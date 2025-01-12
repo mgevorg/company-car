@@ -21,7 +21,7 @@ class PositionSeeder extends Seeder
             $assignedCategories = $comfortCategories->random(rand(1, 3));
             foreach ($assignedCategories as $category) {
                 DB::table('position_comfort_category')->insert([
-                    'position' => $position->name,
+                    'position_id' => $position->id,
                     'comfort_category_id' => $category->id,
                     'created_at' => now(),
                     'updated_at' => now(),

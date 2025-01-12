@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Car;
+use App\Models\ComfortCategory;
+use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,8 +22,8 @@ class CarFactory extends Factory
     {
         return [
             'model' => $this->faker->word(),
-            'comfort_category_id' => null,
-            'driver_id' => null,
+            'driver_id' => Employee::factory(),
+            'comfort_category_id' => ComfortCategory::factory(),
         ];
     }
 }

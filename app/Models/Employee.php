@@ -12,7 +12,7 @@ class Employee extends Model
 
     protected $fillable = [
         'name',
-        'position'
+        'position_id',
     ];
 
     public function cars(): HasMany
