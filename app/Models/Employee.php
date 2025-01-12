@@ -24,4 +24,9 @@ class Employee extends Model
     {
         return $this->hasMany(Booking::class);
     }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
 }

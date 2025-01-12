@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ComfortCategorySeeder::class,
             CarSeeder::class,
             BookingSeeder::class,
+            PositionSeeder::class,
         ]);
     }
 }

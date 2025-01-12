@@ -10,6 +10,8 @@ class CarRepository
 {
     public function getAvailableCarsForEmployee(int $employeeId, string $startTime, string $endTime): Collection
     {
+        $employeePosition = DB::table('employees')->where('id', $employeeId)->value('position');
+
         return Car::whereDoesntHave('bookings', function ($query) use ($startTime, $endTime) {
             $query->where(function ($q) use ($startTime, $endTime) {
                 $q->whereBetween('start_time', [$startTime, $endTime])
@@ -20,10 +22,8 @@ class CarRepository
                     });
             });
         })
-            ->whereHas('comfortCategory.positions', function ($query) use ($employeeId) {
-                $query->where('position', function () use ($employeeId) {
-                    return DB::table('employees')->where('id', $employeeId)->value('position');
-                });
+            ->whereHas('comfortCategory.positions', function ($query) use ($employeePosition) {
+                $query->where('name', $employeePosition);
             })
             ->get();
     }

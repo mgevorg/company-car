@@ -11,6 +11,8 @@ class Car extends Model
 {
     use HasFactory;
 
+    protected $table = 'cars';
+
     protected $fillable = [
         'model',
         'comfort_category_id',

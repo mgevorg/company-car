@@ -22,6 +22,6 @@ class ComfortCategory extends Model
 
     public function positions(): BelongsToMany
     {
-        return $this->belongsToMany(Position::class, 'position_comfort_category');
+        return $this->belongsToMany(Position::class, 'position_comfort_category', 'comfort_category_id', 'position', 'id', 'name');
     }
 }
