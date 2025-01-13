@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('position_comfort_category', function (Blueprint $table) {
             $table->id();
-            $table->string('position');
+            $table->foreignId('position_id')->constrained('positions')->onDelete('cascade');
             $table->foreignId('comfort_category_id')->constrained('comfort_categories')->onDelete('cascade');
             $table->timestamps();
         });
