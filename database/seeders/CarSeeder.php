@@ -15,11 +15,11 @@ class CarSeeder extends Seeder
      */
     public function run(): void
     {
-        $drivers = Employee::all()->take(5);
+        $drivers = Employee::where('position_id', '!=', 5)->get();
         $categories = ComfortCategory::all();
 
         foreach ($drivers as $driver) {
-            Car::factory()->count(2)->create([
+            Car::factory()->create([
                 'driver_id' => $driver->id,
                 'comfort_category_id' => $categories->random()->id,
             ]);

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('model');
-            $table->foreignId('comfort_category_id')->constrained('comfort_categories')->onDelete('cascade');
-            $table->foreignId('driver_id')->constrained('employees')->onDelete('cascade');
+            $table->foreignId('comfort_category_id')->nullable()->constrained('comfort_categories')->onDelete('cascade');
+            $table->foreignId('driver_id')->nullable()->constrained('employees')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Employee extends Model
@@ -25,7 +26,7 @@ class Employee extends Model
         return $this->hasMany(Booking::class);
     }
 
-    public function position()
+    public function position(): belongsTo
     {
         return $this->belongsTo(Position::class);
     }

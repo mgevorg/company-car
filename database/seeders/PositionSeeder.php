@@ -15,7 +15,23 @@ class PositionSeeder extends Seeder
      */
     public function run(): void
     {
-        $positions = Position::factory()->count(5)->create();
+        Position::factory()->create(
+            ['name' => 'Director'],
+        );
+        Position::factory()->create(
+            ['name' => 'Manager'],
+        );
+        Position::factory()->create(
+            ['name' => 'TeamLeader'],
+        );
+        Position::factory()->create(
+            ['name' => 'RegularEmployee'],
+        );
+        Position::factory()->create(
+            ['name' => 'DriverEmployee'],
+        );
+
+        $positions = Position::limit(4)->get();
         $comfortCategories = ComfortCategory::all();
         foreach ($positions as $position) {
             $assignedCategories = $comfortCategories->random(rand(1, 3));

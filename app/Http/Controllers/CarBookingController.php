@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilterAvailableCarsRequest;
 use App\Http\Requests\CreateBookingRequest;
@@ -23,11 +24,14 @@ class CarBookingController extends Controller
     public function availableCars(FilterAvailableCarsRequest $request): JsonResponse
     {
         $filters = $request->validated();
-        $availableCars = $this->carRepository->getAvailableCarsForEmployee(
-            $filters['employee_id'],
-            $filters['start_time'],
-            $filters['end_time']
-        );
+        try {
+            $availableCars = $this->carRepository->getAvailableCarsForEmployee($filters);
+
+            return response()->json($availableCars);
+        } catch (Exception $e) {
+//            return response()->json("Invalid input data", 500);
+        }
+        $availableCars = $this->carRepository->getAvailableCarsForEmployee($filters);
 
         return response()->json($availableCars);
     }

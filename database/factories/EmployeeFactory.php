@@ -21,7 +21,7 @@ class EmployeeFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'position_id' => Position::factory(),
+            'position_id' => Position::inRandomOrder()->first()->id,
         ];
     }
 }

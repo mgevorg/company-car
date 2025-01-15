@@ -6,6 +6,7 @@ use App\Models\Car;
 use App\Models\ComfortCategory;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Collection;
 
 /**
  * @extends Factory>
@@ -20,8 +21,10 @@ class CarFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = (new \Faker\Factory())::create();
+        $faker->addProvider(new \Faker\Provider\FakeCar($faker));
         return [
-            'model' => $this->faker->word(),
+            'model' => $faker->vehicle(),
             'driver_id' => Employee::factory(),
             'comfort_category_id' => ComfortCategory::factory(),
         ];

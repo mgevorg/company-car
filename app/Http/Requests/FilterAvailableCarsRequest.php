@@ -22,10 +22,10 @@ class FilterAvailableCarsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employees,id',
-            'start_time' => 'required|date|after:now',
-            'end_time' => 'required|date|after:start_time',
-            'model' => 'nullable|string',
+            'employee_id' => 'integer|exists:employees,id',
+            'start_time' => 'date|after:now',
+            'end_time' => 'date|after:start_time',
+            'model_id' => 'nullable|integer|exists:cars,id',
             'comfort_category_id' => 'nullable|exists:comfort_categories,id',
         ];
     }
