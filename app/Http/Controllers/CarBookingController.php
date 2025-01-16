@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilterAvailableCarsRequest;
-use App\Http\Requests\CreateBookingRequest;
+use App\Http\Requests\CreateEmployeeRequest;
 use App\Repositories\CarRepository;
 use App\Repositories\BookingRepository;
 use Illuminate\Http\JsonResponse;
@@ -32,7 +32,7 @@ class CarBookingController extends Controller
         }
     }
 
-    public function createBooking(CreateBookingRequest $request): JsonResponse
+    public function createBooking(CreateEmployeeRequest $request): JsonResponse
     {
         $data = $request->validated();
         $booking = $this->bookingRepository->createBooking($data);

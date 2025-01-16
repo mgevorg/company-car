@@ -17,5 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('/cars/available', [CarBookingController::class, 'availableCars']);
-Route::post('/bookings', [CarBookingController::class, 'createBooking'])->middleware('api');
-Route::get('/employees', [EmployeeController::class, 'listEmployees']);
+Route::post('/bookings', [CarBookingController::class, 'createBooking']);
+
+Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
+Route::post('/employees', [EmployeeController::class, 'createEmployee']);

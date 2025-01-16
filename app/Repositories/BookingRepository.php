@@ -19,7 +19,6 @@ class BookingRepository
         $startTime = $data['start_time'];
         $endTime = $data['end_time'];
 
-        // Проверяем, что сотрудник не является водителем
         $isDriver = Car::query()
             ->where('id', $carId)
             ->whereHas('driver', function ($query) use ($employeeId) {
@@ -31,7 +30,6 @@ class BookingRepository
             throw ValidationException::withMessages(['employee_id' => 'The employee cannot be the driver of the car.']);
         }
 
-        // Проверяем, что категория комфорта автомобиля доступна для должности сотрудника
         $isCategoryAllowed = DB::table('position_comfort_category')
             ->where('position_id', function ($subquery) use ($employeeId) {
                 $subquery->select('position_id')
@@ -46,7 +44,6 @@ class BookingRepository
             throw ValidationException::withMessages(['comfort_category_id' => 'The comfort category is not allowed for the employee\'s position.']);
         }
 
-        // Проверяем доступность машины на указанный временной интервал
         $isCarAvailable = Car::query()
             ->where('id', $carId)
             ->whereDoesntHave('bookings', function ($query) use ($startTime, $endTime) {
