@@ -26,26 +26,16 @@ class CarBookingController extends Controller
         $filters = $request->validated();
         try {
             $availableCars = $this->carRepository->getAvailableCarsForEmployee($filters);
-
             return response()->json($availableCars);
         } catch (Exception $e) {
-//            return response()->json("Invalid input data", 500);
+            return response()->json("Invalid input data", 500);
         }
-        $availableCars = $this->carRepository->getAvailableCarsForEmployee($filters);
-
-        return response()->json($availableCars);
     }
 
     public function createBooking(CreateBookingRequest $request): JsonResponse
     {
         $data = $request->validated();
-
-        $booking = $this->bookingRepository->createBooking(
-            $data['car_id'],
-            auth()->id(),
-            $data['start_time'],
-            $data['end_time']
-        );
+        $booking = $this->bookingRepository->createBooking($data);
 
         return response()->json($booking, 201);
     }

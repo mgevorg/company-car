@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/cars/available', [CarBookingController::class, 'availableCars']);
-Route::post('/bookings', [CarBookingController::class, 'createBooking']);
-Route::get('/employees', [EmployeeController::class, 'listEmployees']);
+//
+//Route::get('/cars/available', [CarBookingController::class, 'availableCars']);
+//Route::post('/bookings', [CarBookingController::class, 'createBooking'])->middleware('api');
+//Route::get('/employees', [EmployeeController::class, 'listEmployees']);

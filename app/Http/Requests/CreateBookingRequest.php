@@ -24,6 +24,8 @@ class CreateBookingRequest extends FormRequest
     {
         return [
             'car_id' => 'required|exists:cars,id',
+            'employee_id' => 'required|exists:employees,id',
+            'comfort_category_id' => 'required|exists:comfort_categories,id',
             'start_time' => 'required|date|after:now',
             'end_time' => 'required|date|after:start_time',
         ];
